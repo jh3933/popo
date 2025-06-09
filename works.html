@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Works - My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: 'Pretendard', sans-serif;
+      }
+
+      .work-card img {
+        transition: transform 0.4s ease;
+      }
+
+      .work-card:hover img {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- 헤더 -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">My Portfolio</h1>
+        <nav class="space-x-4 text-sm md:text-base">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="works.html" class="text-blue-500 font-semibold">Works</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 타이틀 -->
+    <section class="pt-32 pb-10 text-center" data-aos="fade-up">
+      <h1 class="text-5xl font-bold mb-2">My Works</h1>
+      <p class="text-lg text-gray-600">제가 만든 프로젝트들을 소개합니다.</p>
+    </section>
+
+    <!-- 작품 갤러리 -->
+    <main class="container mx-auto px-6 pb-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+        
+        <!-- 예시 카드 1 -->
+        <div class="work-card group overflow-hidden rounded-lg shadow-md bg-white">
+          <img src="assets/work1.jpg" alt="프로젝트1" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">뉴스레터 굿즈 디자인</h3>
+            <p class="text-sm text-gray-600">스펙타클 구독자를 위한 온라인 굿즈 제작 (배경화면, 스티커 등)</p>
+          </div>
+        </div>
+
+        <!-- 예시 카드 2 -->
+        <div class="work-card group overflow-hidden rounded-lg shadow-md bg-white">
+          <img src="assets/work2.jpg" alt="프로젝트2" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">리디북스 콘텐츠 마케팅</h3>
+            <p class="text-sm text-gray-600">인스타그램 콘텐츠 시리즈 및 이벤트 운영</p>
+          </div>
+        </div>
+
+        <!-- 예시 카드 3 -->
+        <div class="work-card group overflow-hidden rounded-lg shadow-md bg-white">
+          <img src="assets/work3.jpg" alt="프로젝트3" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">청소년예술제 카드뉴스</h3>
+            <p class="text-sm text-gray-600">SNS 업로드용 홍보 콘텐츠 디자인</p>
+          </div>
+        </div>
+
+        <!-- 더 많은 카드 추가 가능 -->
+        
+      </div>
+    </main>
+
+    <!-- 스크립트 -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>AOS.init();</script>
+  </body>
+</html>
