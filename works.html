@@ -5,17 +5,15 @@
     <title>Works - My Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fslightbox/index.js"></script>
     <style>
       body {
         font-family: 'Pretendard', sans-serif;
       }
 
-      .work-card img {
-        transition: transform 0.4s ease;
-      }
-
-      .work-card:hover img {
-        transform: scale(1.05);
+      .filter-btn.active {
+        background-color: #3b82f6;
+        color: white;
       }
     </style>
   </head>
@@ -39,44 +37,96 @@
       <p class="text-lg text-gray-600">제가 만든 프로젝트들을 소개합니다.</p>
     </section>
 
+    <!-- 필터 -->
+    <div class="text-center mb-10" data-aos="fade-up" data-aos-delay="100">
+      <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm active" data-filter="all">전체</button>
+      <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm" data-filter="design">디자인</button>
+      <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm" data-filter="marketing">마케팅</button>
+    </div>
+
     <!-- 작품 갤러리 -->
     <main class="container mx-auto px-6 pb-24">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
-        
-        <!-- 예시 카드 1 -->
-        <div class="work-card group overflow-hidden rounded-lg shadow-md bg-white">
-          <img src="assets/work1.jpg" alt="프로젝트1" class="w-full h-64 object-cover" />
+
+        <!-- 카드 예시 1 -->
+        <div class="work-card group relative overflow-hidden rounded-lg shadow-md bg-white" data-category="design">
+          <a data-fslightbox="gallery" href="assets/work1.jpg">
+            <img src="assets/work1.jpg" alt="프로젝트1" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+          </a>
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+            <a href="https://example.com/project1" target="_blank" class="text-white font-semibold text-lg underline">자세히 보기</a>
+          </div>
           <div class="p-4">
             <h3 class="text-xl font-semibold mb-2">뉴스레터 굿즈 디자인</h3>
             <p class="text-sm text-gray-600">스펙타클 구독자를 위한 온라인 굿즈 제작 (배경화면, 스티커 등)</p>
           </div>
         </div>
 
-        <!-- 예시 카드 2 -->
-        <div class="work-card group overflow-hidden rounded-lg shadow-md bg-white">
-          <img src="assets/work2.jpg" alt="프로젝트2" class="w-full h-64 object-cover" />
+        <!-- 카드 예시 2 -->
+        <div class="work-card group relative overflow-hidden rounded-lg shadow-md bg-white" data-category="marketing">
+          <a data-fslightbox="gallery" href="assets/work2.jpg">
+            <img src="assets/work2.jpg" alt="프로젝트2" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+          </a>
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+            <a href="https://example.com/project2" target="_blank" class="text-white font-semibold text-lg underline">자세히 보기</a>
+          </div>
           <div class="p-4">
             <h3 class="text-xl font-semibold mb-2">리디북스 콘텐츠 마케팅</h3>
             <p class="text-sm text-gray-600">인스타그램 콘텐츠 시리즈 및 이벤트 운영</p>
           </div>
         </div>
 
-        <!-- 예시 카드 3 -->
-        <div class="work-card group overflow-hidden rounded-lg shadow-md bg-white">
-          <img src="assets/work3.jpg" alt="프로젝트3" class="w-full h-64 object-cover" />
+        <!-- 카드 예시 3 -->
+        <div class="work-card group relative overflow-hidden rounded-lg shadow-md bg-white" data-category="design">
+          <a data-fslightbox="gallery" href="assets/work3.jpg">
+            <img src="assets/work3.jpg" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+          </a>
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+            <a href="https://example.com/project3" target="_blank" class="text-white font-semibold text-lg underline">자세히 보기</a>
+          </div>
           <div class="p-4">
             <h3 class="text-xl font-semibold mb-2">청소년예술제 카드뉴스</h3>
             <p class="text-sm text-gray-600">SNS 업로드용 홍보 콘텐츠 디자인</p>
           </div>
         </div>
 
-        <!-- 더 많은 카드 추가 가능 -->
-        
       </div>
     </main>
+
+    <!-- 후기 섹션 -->
+    <section class="text-center mt-16 max-w-2xl mx-auto px-6" data-aos="fade-up" data-aos-delay="300">
+      <h2 class="text-2xl font-semibold mb-4">프로젝트를 통해 성장한 점</h2>
+      <p class="text-gray-600 leading-relaxed">
+        다양한 콘텐츠를 기획·제작하며 실무 감각을 키웠고,<br />
+        브랜드와 사용자 간의 연결고리를 만들어내는 경험을 했습니다.<br />
+        앞으로도 더 많은 프로젝트를 통해 꾸준히 성장하고 싶습니다.
+      </p>
+    </section>
 
     <!-- 스크립트 -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>AOS.init();</script>
+    <script>
+      const buttons = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.work-card');
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          const filter = button.getAttribute('data-filter');
+
+          cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

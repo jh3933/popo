@@ -1,17 +1,23 @@
-<!-- contact.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Contact</title>
+  <title>Contact - My Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+    }
+  </style>
 </head>
-<body>
-  <!-- 헤더 복붙 -->
+<body class="bg-white text-gray-900">
+
+  <!-- 헤더 -->
   <header class="fixed w-full bg-white shadow-md z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold">My Portfolio</h1>
-      <nav class="space-x-4">
+      <nav class="space-x-4 text-sm md:text-base">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="works.html">Works</a>
@@ -20,15 +26,44 @@
     </div>
   </header>
 
-  <!-- Contact Form -->
-  <section class="pt-24 max-w-xl mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-4">Contact Me</h2>
-    <form action="mailto:nadask98@naver.com" method="POST" enctype="text/plain" class="space-y-6">
-      <input type="text" name="name" placeholder="이름" class="w-full border p-2 rounded" required />
-      <input type="email" name="email" placeholder="이메일" class="w-full border p-2 rounded" required />
-      <textarea name="message" placeholder="메시지" rows="5" class="w-full border p-2 rounded" required></textarea>
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">보내기</button>
-    </form>
+  <!-- Contact Section -->
+  <section class="pt-32 pb-20 px-6 container mx-auto max-w-6xl" data-aos="fade-up">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      
+      <!-- 이미지 -->
+      <div class="flex justify-center">
+        <img src="indoor plants-rafiki.png" alt="Contact Illustration" class="w-full max-w-md">
+      </div>
+
+      <!-- 폼과 텍스트 -->
+      <div>
+        <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          궁금한 점이 있거나 협업 제안이 있다면<br />
+          언제든지 편하게 연락해주세요.<br />
+          <span class="text-sm text-gray-500">보통 2~3일 내로 회신드려요 😊</span>
+        </p>
+
+        <form action="mailto:nadask98@naver.com" method="POST" enctype="text/plain" class="space-y-5">
+          <input type="text" name="name" placeholder="이름" class="w-full border p-3 rounded" required />
+          <input type="email" name="email" placeholder="이메일" class="w-full border p-3 rounded" required />
+          <textarea name="message" placeholder="메시지" rows="5" class="w-full border p-3 rounded" required></textarea>
+          <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded hover:bg-blue-600 transition">보내기</button>
+        </form>
+
+        <!-- SNS 링크 -->
+        <div class="mt-8 flex space-x-6 text-gray-600 text-lg">
+          <a href="https://instagram.com/yourid" target="_blank" class="hover:text-black">Instagram</a>
+          <a href="https://notion.so/yourpage" target="_blank" class="hover:text-black">Notion</a>
+          <a href="mailto:nadask98@naver.com" class="hover:text-black">Email</a>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- AOS 애니메이션 -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
 </body>
 </html>
