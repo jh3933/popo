@@ -10,17 +10,46 @@
       font-family: 'Pretendard', sans-serif;
     }
   </style>
+
+<!-- ✅ 다크모드 초기 설정 -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+<!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            pretendard: ['"Pretendard"', 'sans-serif'],
+          },
+          colors: {
+            primary: '#1E3A8A',
+            secondary: '#60A5FA',
+            background: '#F0F4FF',
+            darkBg: '#0F172A',
+          }
+        }
+      }
+    }
+  </script>
+
 </head>
 <body class="bg-white text-gray-900">
 
   <!-- 헤더 -->
-  <header class="fixed w-full bg-white shadow-md z-50">
+  <header class="fixed w-full bg-white dark:bg-slate-800 shadow-md z-40">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold">My Portfolio</h1>
-      <nav class="space-x-4 text-sm md:text-base">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="works.html">Works</a>
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-300">My Portfolio</h1>
+      <nav class="space-x-4 text-slate-700 dark:text-slate-200">
+        <a href="index.html" class="hover:text-blue-500">Home</a>
+        <a href="about.html" class="hover:text-blue-500">About</a>
+        <a href="works.html" class="hover:text-blue-500">Works</a>
         <a href="contact.html" class="text-blue-500 font-semibold">Contact</a>
       </nav>
     </div>
@@ -40,7 +69,7 @@
         <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
         <p class="text-gray-600 mb-6 leading-relaxed">
           궁금한 점이 있거나 협업 제안이 있다면<br />
-          언제든지 편하게 연락해주세요.<br />
+          언제든지 편하게 연락해주세요!<br />
           <span class="text-sm text-gray-500">보통 2~3일 내로 회신드려요 😊</span>
         </p>
 
@@ -53,8 +82,8 @@
 
         <!-- SNS 링크 -->
         <div class="mt-8 flex space-x-6 text-gray-600 text-lg">
-          <a href="https://instagram.com/yourid" target="_blank" class="hover:text-black">Instagram</a>
-          <a href="https://notion.so/yourpage" target="_blank" class="hover:text-black">Notion</a>
+          <a href="https://www.instagram.com/9usam3?igsh=d2M1ZGVnczB5NHBr&utm_source=qr" target="_blank" class="hover:text-black">Instagram</a>
+          <a href="https://www.notion.so/2025-1db5c964b39980258d3fc03548109a3a?source=copy_link" target="_blank" class="hover:text-black">Notion</a>
           <a href="mailto:nadask98@naver.com" class="hover:text-black">Email</a>
         </div>
       </div>
@@ -64,6 +93,8 @@
   <!-- AOS 애니메이션 -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>AOS.init();</script>
+
+  
 
 </body>
 </html>

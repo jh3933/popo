@@ -6,12 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- ✅ 다크모드 초기 설정 -->
   <script>
-  // HTML 로딩 전에 다크모드 적용 (플래시 방지)
-  if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 
+  <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -40,98 +42,108 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 
-<body class="text-slate-800 dark:text-gray-100 bg-white dark:bg-slate-900 font-pretendard transition-colors duration-300">
+<body class="font-pretendard text-primary dark:text-secondary bg-white dark:bg-slate-900 transition-colors duration-300">
 
-  <!-- 다크모드 토글 -->
-  <button id="darkToggle" class="fixed top-2.5 right-4 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-2 rounded-full shadow-md">
+  <!-- 다크모드 토글 버튼 -->
+  <button id="darkToggle" class="fixed top-2.5 right-4 z-50 bg-white dark:bg-gray-800 text-primary dark:text-secondary p-2 rounded-full shadow-md">
     <span id="darkIcon">🌙</span>
   </button>
 
   <!-- 헤더 -->
-  <header class="fixed w-full bg-white dark:bg-slate-800 shadow-md z-50">
+  <header class="fixed w-full bg-white dark:bg-slate-800 shadow-md z-40">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold text-blue-600 dark:text-blue-300">My Portfolio</h1>
       <nav class="space-x-4 text-slate-700 dark:text-slate-200">
-        <a href="index.html">Home</a>
+        <a href="index.html" class="hover:text-blue-500">Home</a>
         <a href="about.html" class="text-blue-500 font-semibold">About</a>
-        <a href="works.html">Works</a>
-        <a href="contact.html">Contact</a>
+        <a href="works.html" class="hover:text-blue-500">Works</a>
+        <a href="contact.html" class="hover:text-blue-500">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- 커버 이미지 -->
-  <section class="relative h-screen bg-cover bg-center flex items-center justify-center pt-16 transition-colors duration-500"
-           style="background-image: url('assets/about-cover.jpg');">
-    <div class="absolute inset-0 bg-white/80 dark:bg-slate-900/80 z-0"></div>
-    <div class="z-10 text-center text-slate-800 dark:text-white px-6" data-aos="fade-up">
-      <h1 class="text-5xl font-bold mb-4">About Me</h1>
-      <p class="text-xl">진심을 담아 만드는 콘텐츠, 나를 닮은 결과물</p>
-    </div>
-  </section>
+  <!-- 커버 이미지 (그라디언트 배경으로 변경) -->
+<section class="relative h-screen flex items-center justify-center pt-16 overflow-hidden bg-slate-100 dark:bg-slate-900">
 
-  <main class="pt-32 space-y-32 pb-24">
+  <!-- 모서리 그라디언트 애니메이션 배경 -->
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <div class="absolute w-[700px] h-[700px] bg-gradient-to-br from-blue-300/40 to-sky-500/30 rounded-full blur-3xl animate-pulse-slow top-[-200px] left-[-200px] dark:from-blue-800/40 dark:to-sky-900/30"></div>
+    <div class="absolute w-[500px] h-[500px] bg-gradient-to-tl from-sky-200/30 to-blue-400/20 rounded-full blur-3xl animate-pulse-slow bottom-[-150px] right-[-150px] dark:from-sky-700/30 dark:to-indigo-900/20"></div>
+  </div>
+
+  <!-- 중앙 텍스트 박스 -->
+  <div class="z-10 text-center text-primary dark:text-secondary px-6 relative backdrop-blur-md bg-white/60 dark:bg-slate-800/60 p-8 rounded-3xl shadow-xl animate-fade-in">
+    <h1 class="text-5xl font-bold text-blue-700 dark:text-blue-300 mb-2 drop-shadow-glow">About Me</h1>
+    <p class="text-xl text-slate-700 dark:text-slate-300 drop-shadow-glow">진심을 담아 만드는 콘텐츠, 나를 닮은 결과물</p>
+  </div>
+</section>
+
+<!-- main 영역부터 수정 -->
+<main class="relative z-10 bg-blue-50 dark:bg-slate-900 transition-colors duration-500">
+  <div class="pt-32 space-y-24 pb-24 max-w-screen-lg mx-auto px-6">
+
     <!-- 소개 섹션 -->
-    <section class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-10" data-aos="fade-up">
-      <div class="w-40 h-40 rounded-full overflow-hidden shadow-lg">
-        <img src="assets/profile.jpg" alt="프로필 사진" class="object-cover w-full h-full" />
+    <section class="flex flex-col md:flex-row items-center gap-10 bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md" data-aos="fade-up">
+      <div class="w-40 h-40 rounded-full overflow-hidden shadow-lg shrink-0">
+        <img src="mimi.png" alt="프로필 사진" class="object-cover w-full h-full" />
       </div>
-      <div class="md:w-2/3 text-lg leading-relaxed">
-        <h2 class="text-3xl font-bold mb-3">안녕하세요!</h2>
-        <p>
-          저는 콘텐츠 기획과 디자인을 통해 <strong>효율성과 감성을 동시에 전달하는 작업</strong>을 좋아합니다.
-          단순히 보여주는 것을 넘어서, 사용자의 경험과 감정에 스며드는 결과물을 만드는 것을 지향합니다.
+      <div class="text-lg leading-relaxed">
+        <h2 class="text-3xl font-bold text-blue-700 dark:text-blue-300 mb-3">안녕하세요!</h2>
+        <p class="text-slate-700 dark:text-slate-300">
+          저는 콘텐츠 기획과 디자인을 통해 <strong>감성을 전달하는 작업</strong>을 좋아합니다.
+          사용자 경험과 감정에 스며드는 결과물을 만들고자 노력하고 있어요.
         </p>
       </div>
     </section>
 
     <!-- 철학 섹션 -->
-    <section class="container mx-auto px-6 text-center" data-aos="fade-up">
-      <h2 class="text-4xl font-bold mb-6">Philosophy</h2>
-      <p class="text-xl italic max-w-3xl mx-auto">
-        “적은 것으로 더 좋은 결과를”  
-        <br />
+    <section class="bg-white dark:bg-slate-700/40 p-10 rounded-xl text-center shadow-md" data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-blue-700 dark:text-blue-200 mb-4">Philosophy</h2>
+      <p class="text-xl italic text-slate-800 dark:text-slate-200 max-w-2xl mx-auto">
+        “적은 것으로 더 좋은 결과를”<br />
         불필요한 것을 덜어내고 <span class="font-semibold">핵심만을 시각적으로</span> 전달하는 것이 저의 철학입니다.
       </p>
     </section>
 
     <!-- 경험 섹션 -->
-    <section class="container mx-auto px-6" data-aos="fade-up">
-      <h2 class="text-4xl font-bold mb-6 text-center">Experience</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
-        <div class="border-l-4 border-blue-400 pl-4">
-          <p class="font-semibold">리디북스 콘텐츠 마케터 인턴</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300">2024.01 - 2024.03</p>
+    <section data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-blue-700 dark:text-blue-300 mb-6 text-center">Experience</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">리디북스 콘텐츠 마케터 인턴</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">2024.01 - 2024.03</p>
         </div>
-        <div class="border-l-4 border-blue-400 pl-4">
-          <p class="font-semibold">스펙타클 뉴스레터 기획·제작</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300">2023.07 - 2023.12</p>
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">스펙타클 뉴스레터 기획·제작</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">2023.07 - 2023.12</p>
         </div>
-        <div class="border-l-4 border-blue-400 pl-4">
-          <p class="font-semibold">영화의 전당 서포터즈 콘텐츠팀</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300">2022</p>
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">영화의 전당 서포터즈 콘텐츠팀</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">2022</p>
         </div>
       </div>
     </section>
 
     <!-- 스킬 섹션 -->
-    <section class="container mx-auto px-6" data-aos="fade-up">
-      <h2 class="text-4xl font-bold mb-6 text-center">Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-lg">
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">Photoshop</div>
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">Illustrator</div>
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">Premiere Pro</div>
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">Figma</div>
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">HTML / CSS</div>
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">Tailwind CSS</div>
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">Notion</div>
-        <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg shadow-sm">Google Analytics</div>
+    <section class="bg-white dark:bg-slate-800 p-10 rounded-xl shadow-md" data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-blue-700 dark:text-blue-300 mb-6 text-center">Skills</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">Photoshop</div>
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">Illustrator</div>
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">Premiere Pro</div>
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">After Effect</div>
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">HTML / CSS</div>
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">MS Office</div>
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">Notion</div>
+        <div class="bg-blue-100 dark:bg-slate-700 p-4 rounded-lg shadow text-primary dark:text-secondary">Google Analytics</div>
       </div>
     </section>
-  </main>
+
+  </div>
+</main>
 
   <!-- Footer -->
-  <footer class="py-6 text-center text-sm text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 border-t dark:border-slate-700 transition-colors duration-500">
+  <footer class="py-6 text-center text-sm text-primary/60 dark:text-secondary/60 bg-white/80 dark:bg-slate-900/90 border-t border-primary/20 dark:border-secondary/30 transition-colors duration-500">
     &copy; 2025 Portfolio. All rights reserved.
   </footer>
 
@@ -139,11 +151,17 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>AOS.init();</script>
 
-  <!-- 다크모드 유지 및 토글 스크립트 -->
+  <!-- ✅ 다크모드 토글 스크립트 -->
   <script>
     const toggleBtn = document.getElementById('darkToggle');
     const icon = document.getElementById('darkIcon');
     const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'dark') {
+      icon.textContent = '☀️';
+    } else {
+      icon.textContent = '🌙';
+    }
 
     toggleBtn.addEventListener('click', () => {
       html.classList.toggle('dark');
