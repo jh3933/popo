@@ -32,6 +32,33 @@
     }
   </script>
 
+<!-- ✅ 커스텀 유틸리티 클래스 추가 -->
+  <style>
+    @keyframes pulse-slow {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+      }
+    }
+
+    .animate-pulse-slow {
+      animation: pulse-slow 8s ease-in-out infinite;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1.5s ease-out;
+    }
+  </style>
+
   <!-- Pretendard CDN -->
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
 
@@ -110,16 +137,16 @@
       <h2 class="text-4xl font-bold text-blue-700 dark:text-blue-300 mb-6 text-center">Experience</h2>
       <div class="grid gap-6 md:grid-cols-3">
         <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">리디북스 콘텐츠 마케터 인턴</h3>
-          <p class="text-sm text-slate-600 dark:text-slate-400">2024.01 - 2024.03</p>
+          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">경성대학교 미디어콘텐츠학과</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">2022.03 - 2027.02</p>
         </div>
         <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">스펙타클 뉴스레터 기획·제작</h3>
-          <p class="text-sm text-slate-600 dark:text-slate-400">2023.07 - 2023.12</p>
+          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">부산 영화의전당 서포터즈 18기</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">2024.04 - 2024.12</p>
         </div>
         <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">영화의 전당 서포터즈 콘텐츠팀</h3>
-          <p class="text-sm text-slate-600 dark:text-slate-400">2022</p>
+          <h3 class="font-semibold text-lg text-primary dark:text-secondary mb-1">부산 예술회관 서포터즈 3기</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">2025.03 - 2025.12</p>
         </div>
       </div>
     </section>

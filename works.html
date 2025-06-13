@@ -1,132 +1,233 @@
 <!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Works - My Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/fslightbox/index.js"></script>
-    <style>
-      body {
-        font-family: 'Pretendard', sans-serif;
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <title>Works - My Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind & 설정 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { pretendard: ['"Pretendard"', 'sans-serif'] },
+          colors: {
+            primary: '#1E3A8A',
+            secondary: '#60A5FA',
+            background: '#F0F4FF',
+            darkBg: '#0F172A',
+          }
+        }
       }
+    };
+  </script>
 
-      .filter-btn.active {
-        background-color: #3b82f6;
-        color: white;
+  <!-- 다크모드 초기 설정 -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <!-- AOS & Lightbox & 폰트 -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fslightbox/index.js"></script>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+
+  <!-- 커스텀 유틸리티 -->
+  <style>
+    @layer utilities {
+      .animate-scale-fade {
+        animation: scaleFade 1.2s ease-in-out both;
       }
-    </style>
-  </head>
-  <body class="bg-white text-gray-900">
-    <!-- 헤더 -->
-    <header class="fixed w-full bg-white shadow-md z-50">
-      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold">My Portfolio</h1>
-        <nav class="space-x-4 text-sm md:text-base">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="works.html" class="text-blue-500 font-semibold">Works</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-      </div>
-    </header>
+      @keyframes scaleFade {
+        0% { opacity: 0; transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+    }
+    .filter-btn.active {
+      background-color: #1E3A8A;
+      color: white;
+    }
+    body { font-family: 'Pretendard', sans-serif; }
+  </style>
+</head>
+<body class="bg-blue-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100 font-pretendard transition-colors duration-300">
 
-    <!-- 타이틀 -->
-    <section class="pt-32 pb-10 text-center" data-aos="fade-up">
-      <h1 class="text-5xl font-bold text-blue-700 dark:text-blue mb-2">My Works</h1>
-      <p class="text-lg text-gray-600">제가 만든 프로젝트들을 소개합니다.</p>
-    </section>
+  <!-- 🌙다크모드 토글 -->
+  <button id="darkToggle" class="fixed top-2.5 right-4 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-2 rounded-full shadow-md">
+    <span id="darkIcon">🌙</span>
+  </button>
 
-    <!-- 필터 -->
-    <div class="text-center mb-10" data-aos="fade-up" data-aos-delay="100">
-      <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm active" data-filter="all">영상</button>
-      <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm" data-filter="design">디자인</button>
-      <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm" data-filter="marketing">마케팅</button>
+  <!-- 헤더 -->
+  <header class="fixed w-full bg-white dark:bg-slate-800 shadow-md z-40">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-300">My Portfolio</h1>
+      <nav class="space-x-4 text-slate-700 dark:text-slate-200">
+        <a href="index.html" class="hover:text-blue-500">Home</a>
+        <a href="about.html" class="hover:text-blue-500">About</a>
+        <a href="works.html" class="text-blue-500 font-semibold">Works</a>
+        <a href="contact.html" class="hover:text-blue-500">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- 작품 갤러리 -->
-    <main class="container mx-auto px-6 pb-24">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+  <!-- 타이틀 섹션 -->
+  <section class="pt-32 pb-10 bg-blue-50 dark:bg-slate-900 transition-colors duration-500 text-center" data-aos="fade-down">
+    <h1 class="text-5xl font-bold text-blue-700 dark:text-blue-300 mb-2 animate-scale-fade">My Works</h1>
+    <p class="text-lg text-gray-600 dark:text-gray-300">제가 만든 프로젝트들을 소개합니다.</p>
+  </section>
 
-        <!-- 카드 예시 1 -->
-        <div class="work-card group relative overflow-hidden rounded-lg shadow-md bg-white" data-category="design">
-          <a data-fslightbox="gallery" href="assets/work1.jpg">
-            <img src="assets/work1.jpg" alt="프로젝트1" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-          </a>
-          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-            <a href="https://example.com/project1" target="_blank" class="text-white font-semibold text-lg underline">자세히 보기</a>
-          </div>
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">뉴스레터 굿즈 디자인</h3>
-            <p class="text-sm text-gray-600">스펙타클 구독자를 위한 온라인 굿즈 제작 (배경화면, 스티커 등)</p>
-          </div>
+  <!-- 필터 -->
+  <div class="bg-blue-50 dark:bg-slate-900 transition-colors duration-500 text-center mb-10" data-aos="fade-up" data-aos-delay="100">
+    <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm active transition hover:bg-primary hover:text-white dark:hover:bg-secondary dark:border-gray-600 animate-scale-fade" data-filter="all">전체</button>
+    <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm transition hover:bg-primary hover:text-white dark:hover:bg-secondary dark:border-gray-600 animate-scale-fade" data-filter="video">영상</button>
+    <button class="filter-btn px-4 py-2 mx-2 rounded-full border text-sm transition hover:bg-primary hover:text-white dark:hover:bg-secondary dark:border-gray-600 animate-scale-fade" data-filter="design">디자인</button>
+  </div>
+
+  <!-- 작품 갤러리 -->
+  <main class="py-20 px-6 bg-blue-50 dark:bg-slate-900 transition-colors duration-500">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+      <!-- 카드 반복 -->
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/전지혜_기말_1.png">
+          <img src="assets/전지혜_기말_1.png" alt="프로젝트1" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
         </div>
-
-        <!-- 카드 예시 2 -->
-        <div class="work-card group relative overflow-hidden rounded-lg shadow-md bg-white" data-category="marketing">
-          <a data-fslightbox="gallery" href="assets/work2.jpg">
-            <img src="assets/work2.jpg" alt="프로젝트2" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-          </a>
-          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-            <a href="https://example.com/project2" target="_blank" class="text-white font-semibold text-lg underline">자세히 보기</a>
-          </div>
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">리디북스 콘텐츠 마케팅</h3>
-            <p class="text-sm text-gray-600">인스타그램 콘텐츠 시리즈 및 이벤트 운영</p>
-          </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">앱 디자인</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">반려견 돌봄 앱 기획 / 제작</p>
         </div>
-
-        <!-- 카드 예시 3 -->
-        <div class="work-card group relative overflow-hidden rounded-lg shadow-md bg-white" data-category="design">
-          <a data-fslightbox="gallery" href="assets/work3.jpg">
-            <img src="assets/work3.jpg" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-          </a>
-          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-            <a href="https://example.com/project3" target="_blank" class="text-white font-semibold text-lg underline">자세히 보기</a>
-          </div>
-          <div class="p-4">
-            <h3 class="text-xl font-semibold mb-2">청소년예술제 카드뉴스</h3>
-            <p class="text-sm text-gray-600">SNS 업로드용 홍보 콘텐츠 디자인</p>
-          </div>
-        </div>
-
       </div>
-    </main>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/영전.jpg">
+          <img src="assets/영전.jpg" alt="프로젝트2" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">영화의전당 서포터즈</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">영화의전당 홍보 콘텐츠 기획 / 제작</p>
+    </div>
+    </div>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/SHK.png">
+          <img src="assets/SHK.png" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">경성대학교 러닝플러스 프로그램</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">웹툰 굿즈, 아이돌 콘텐츠 기획 / 제작</p>
+    </div>
+ </div>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/예술제.png">
+          <img src="assets/예술제.png" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">예술회관 서포터즈</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">예술회관 홍보 콘텐츠 기획 / 제작</p>
+    </div>
+</div>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/전시회.jpg">
+          <img src="assets/전시회.jpg" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">영국 국립자연사박물관 특별전 서포터즈</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">전시회 홍보 콘텐츠 기획 / 제작</p>
+    </div>
+    </div>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/IIBI 공모전.jpg">
+          <img src="assets/IIBI 공모전.jpg" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">캐릭터 디자인</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">캐릭터 디자인 기획 / 제작</p>
+    </div>
+    </div>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/학과소개.png">
+          <img src="assets/학과소개.png" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">카드뉴스</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">카드뉴스 제작물 모음</p>
+    </div>
+    </div>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/스펙타클1.png">
+          <img src="assets/스펙타클1.png" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">경성대학교 스펙타클 동아리</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">MELL 뉴스레터 온라인 굿즈 기획 / 제작</p>
+    </div>
+    </div>
+      <div class="work-card group relative overflow-hidden rounded-xl shadow-lg bg-white dark:bg-gray-800 transform hover:-translate-y-2 transition">
+        <a data-fslightbox="gallery" href="assets/스펙타클1.png">
+          <img src="assets/스펙타클1.png" alt="프로젝트3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"/>
+        </a>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+          <a href="#" class="text-white font-semibold text-lg underline">자세히 보기</a>
+        </div>
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2 text-primary dark:text-secondary">일러스트레이션</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">일러스트 작업물 모음</p>
+    </div>
+  </main>
 
-    <!-- 후기 섹션 -->
-    <section class="text-center mt-16 max-w-2xl mx-auto px-6" data-aos="fade-up" data-aos-delay="300">
-      <h2 class="text-2xl font-semibold mb-4">프로젝트를 통해 성장한 점</h2>
-      <p class="text-gray-600 leading-relaxed">
-        다양한 콘텐츠를 기획·제작하며 실무 감각을 키웠고,<br />
-        브랜드와 사용자 간의 연결고리를 만들어내는 경험을 했습니다.<br />
-        앞으로도 더 많은 프로젝트를 통해 꾸준히 성장하고 싶습니다.
-      </p>
-    </section>
+  <!-- 스크립트 로드 -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ once: true, duration: 800 });</script>
 
-    <!-- 스크립트 -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>AOS.init();</script>
-    <script>
-      const buttons = document.querySelectorAll('.filter-btn');
-      const cards = document.querySelectorAll('.work-card');
+  <!-- 필터 기능 -->
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.work-card');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(c => c.classList.toggle('hidden', filter !== 'all' && c.dataset.category !== filter));
+    }));
+  </script>
 
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          buttons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-
-          const filter = button.getAttribute('data-filter');
-
-          cards.forEach(card => {
-            const category = card.getAttribute('data-category');
-            if (filter === 'all' || category === filter) {
-              card.classList.remove('hidden');
-            } else {
-              card.classList.add('hidden');
-            }
-          });
-        });
-      });
-    </script>
-  </body>
+  <!-- 다크모드 토글 -->
+  <script>
+    const toggleBtn = document.getElementById('darkToggle');
+    const icon = document.getElementById('darkIcon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'dark') icon.textContent = '☀️';
+    toggleBtn.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const dark = html.classList.contains('dark');
+      icon.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
+  </script>
+</body>
 </html>
