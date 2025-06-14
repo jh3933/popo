@@ -5,6 +5,7 @@
   <title>Contact - My Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -23,26 +24,33 @@
     };
   </script>
 
+  <!-- 초기 테마 -->
   <script>
     if (localStorage.getItem('theme') === 'dark') {
       document.documentElement.classList.add('dark');
     }
   </script>
 
+  <!-- AOS & Font -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
   <style>
-    body {
-      font-family: 'Pretendard', sans-serif;
-    }
+    body { font-family: 'Pretendard', sans-serif; }
   </style>
 </head>
-<body class="bg-blue-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100 font-pretendard transition-colors duration-300 relative">
+<body class="bg-blue-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 relative">
 
+  <!-- 다크모드 토글 -->
   <button id="darkToggle" class="fixed top-2.5 right-4 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-2 rounded-full shadow-md">
     <span id="darkIcon">🌙</span>
   </button>
 
+  <!-- 헤더 -->
   <header class="fixed w-full bg-white dark:bg-slate-800 shadow-md z-40">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold text-blue-600 dark:text-blue-300">My Portfolio</h1>
@@ -55,13 +63,14 @@
     </div>
   </header>
 
-  <!-- 배경 이미지 오버레이 -->
+  <!-- 배경 이미지 -->
   <div class="absolute inset-0 z-0">
-    <img src="image/sunset-1853871_1920.jpg" alt="Background" class="w-full h-full object-cover opacity-30" />
+    <img src="image/sunset-1853871_1920.jpg" alt="Background" class="w-full h-full object-cover opacity-40 mix-blend-overlay" />
   </div>
 
-  <section class="relative z-10 pt-32 pb-20 px-6 container mx-auto max-w-3xl" data-aos="fade-up">
-    <div class="bg-white dark:bg-slate-800 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-sm rounded-3xl shadow-xl p-10">
+  <!-- Contact Section -->
+  <section class="relative z-10 pt-32 pb-20 px-6 container mx-auto max-w-3xl" data-aos="zoom-in">
+    <div class="bg-white/80 dark:bg-slate-800/70 backdrop-blur-md rounded-[2rem] shadow-2xl p-10 border border-white/40 dark:border-slate-700">
       <h2 class="text-4xl font-bold mb-4 text-center text-blue-700 dark:text-blue-300">Contact Me</h2>
       <p class="text-center text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
         궁금한 점이 있거나 협업 제안이 있다면<br />
@@ -69,46 +78,52 @@
         <span class="text-sm text-gray-500 dark:text-gray-400">보통 2~3일 내로 회신드려요 😊</span>
       </p>
 
-      <form action="mailto:nadask98@naver.com" method="POST" enctype="text/plain" class="space-y-5">
-        <input type="text" name="name" placeholder="이름" class="w-full border border-gray-300 dark:border-gray-600 p-3 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-white" required />
-        <input type="email" name="email" placeholder="이메일" class="w-full border border-gray-300 dark:border-gray-600 p-3 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-white" required />
-        <textarea name="message" placeholder="메시지" rows="5" class="w-full border border-gray-300 dark:border-gray-600 p-3 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-white" required></textarea>
-        <button type="submit" class="w-full bg-primary text-white py-3 rounded hover:bg-blue-700 transition">보내기</button>
+      <form id="contact-form" class="space-y-5">
+        <input type="text" name="user_name" placeholder="이름" required class="w-full p-3 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition" />
+        <input type="email" name="user_email" placeholder="이메일" required class="w-full p-3 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition" />
+        <textarea name="message" placeholder="메시지" rows="5" required class="w-full p-3 rounded-2xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition"></textarea>
+        <button type="submit" class="w-full bg-primary hover:bg-blue-800 text-white font-semibold py-3 rounded-full transition duration-300 shadow-md">
+          📩 보내기
+        </button>
       </form>
 
-      <!-- 아이콘 포함 소셜 링크 -->
       <div class="mt-8 flex justify-center space-x-6 text-gray-600 dark:text-gray-300 text-lg">
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/9usam3?igsh=d2M1ZGVnczB5NHBr&utm_source=qr" target="_blank" class="hover:text-primary flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24">
-            <path d="M7.75 2C5.4 2 4 3.4 4 5.75v12.5C4 20.6 5.4 22 7.75 22h8.5C18.6 22 20 20.6 20 18.25V5.75C20 3.4 18.6 2 16.25 2h-8.5zM6 5.75C6 4.78 6.78 4 7.75 4h8.5c.97 0 1.75.78 1.75 1.75v12.5c0 .97-.78 1.75-1.75 1.75h-8.5A1.75 1.75 0 0 1 6 18.25V5.75zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm5.25-2.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-          </svg>
-          <span>Instagram</span>
+        <a href="https://www.instagram.com/9usam3" target="_blank" class="hover:text-primary hover:scale-110 transition-transform duration-200 flex items-center gap-2">
+          <span>📸</span><span>Instagram</span>
         </a>
-
-        <!-- Notion -->
-        <a href="https://www.notion.so/2025-1db5c964b39980258d3fc03548109a3a?source=copy_link" target="_blank" class="hover:text-primary flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-5 h-5 fill-current">
-            <path d="M19.4 17.3 69.7 13c5.2-.4 8.3 2.9 8.3 7.7v59.6c0 5.1-2.5 8.1-8.3 8.7l-49.5 4.6c-5.9.6-8.9-2.5-8.9-7.7V24.6c0-4.8 3-7 8.1-7.3zm7.1 11.8v45.5l12.4-1V43l18 28.1 12.6-1V36.2l-12.4 1v24.6l-18.5-29.2-12.1 1.1z"/>
-          </svg>
-          <span>Notion</span>
-        </a>
-
-        <!-- Email -->
-        <a href="mailto:nadask98@naver.com" class="hover:text-primary flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v1.2l-10 5.6L2 7.2V6c0-1.1.9-2 2-2zm0 4.3l8 4.5 8-4.5V18c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8.3z"/>
-          </svg>
-          <span>Email</span>
-        </a>
+        <a href="https://www.notion.so/2025" target="_blank" class="hover:text-primary hover:scale-110 transition-transform duration-200 flex items-center gap-2">
+          <span>📘</span><span>Notion</span>
+        </a>   
       </div>
     </div>
   </section>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init();</script>
+ <!-- 푸터 -->
+  <footer class="py-6 text-center text-sm text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 border-t dark:border-slate-700">
+    &copy; Email : jihyej093@gmail.com
+  </footer>
 
+  <!-- 스크립트 -->
   <script>
+    AOS.init();
+
+    (function () {
+      emailjs.init('sFM9r5JpWYGq9KD_b');
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm('sam_393', 'template_le39xhv', this)
+        .then(function () {
+          alert('메일이 성공적으로 전송되었습니다! ✉️');
+          e.target.reset();
+        }, function (error) {
+          console.error('전송 실패:', error);
+          alert('전송 실패: ' + JSON.stringify(error));
+        });
+    });
+
     const toggleBtn = document.getElementById('darkToggle');
     const icon = document.getElementById('darkIcon');
     const html = document.documentElement;
@@ -120,5 +135,6 @@
       localStorage.setItem('theme', dark ? 'dark' : 'light');
     });
   </script>
+
 </body>
 </html>
